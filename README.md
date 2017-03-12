@@ -48,6 +48,7 @@ Przychodzić do C3/209B
 2 najlepsze grupy dostają płytki
 
 
+
 +emulacja epromu na flashu (bufor cykliczny) 
 
 Czas jako indeks, pozycja w logach
