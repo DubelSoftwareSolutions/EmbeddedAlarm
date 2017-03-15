@@ -1,0 +1,8 @@
+*.doc
+*.docx
+*.aux
+*.out
+*.toc
+*.log
+*.gz
+*.xlsx
