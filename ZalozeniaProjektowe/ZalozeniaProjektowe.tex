@@ -14,11 +14,34 @@
 \input{tytulowa.tex}
 \begin{document}
 \maketitle
-\tableofcontents
-\newpage
+\normalsize
 
 \section{Główne założenia projektowe}
+\begin{itemize}
+\item Stworzenie software'owego projektu modułu antykradzieżowego na gotowej płytce, zaprojektowanej przez Macieja Flisa, opartej na mikrokontrolerze STM32F746VGT6.
+\item Napisanie programu z użyciem biblioteki HAL generowanej przez dedykowane IDE od firmy ST (STM32 toolchain: STM32CubeMX, Atollic Truestudio).
+\item Wgrywanie programu na płytkę za pomocą konwertera USB $\rightarrow$ UART.
+\item Wykorzystanie modułu GPS do uzyskania lokalizacji płytki.
+\item Wykorzystanie akcelerometru do uruchamiania wszystkich modułów w momencie poruszenia płytką.
+\item Przesyłanie informacji na żądanie w wiadomości SMS z użyciem modułu GSM.
+\item Emulacja pamięci EPROM w pamięci flash za pomocą bufora cyklicznego i zapisywanie w niej kolejnych lokalizacji modułu (po każdym przejściu w stan czuwania oraz co ustalony czas w stanie aktywnym).
+\item Uruchomienie zegara czasu rzeczywistego (RTC) i zapisywanie informacji o czasie przeprowadzenia pomiaru wraz z lokalizacją w symulowanej pamięci EPROM w formie logu.
+\item Wysyłanie danych z logu do komputera przez port USB.
+\end{itemize}
 
+\section{Harmonogram}
+\begin{itemize}
+\item (20.03. - 26.03.) Konfiguracja peryferiów mikrokontrolera, wygenerowanie kodu, wgranie programu na płytkę przez UART.
+\item (27.03. - 2.04.) Oprogramowanie komunikacji USB i akcelerometru.
+\item (3.04. - 23.04.) Uruchomienie modułu GSM, uruchomienie modułu GPS.
+\item (24.04. - 7.05.) Oprogramowanie RTC, emulacja pamięci EPROM.
+\item (8.05. - 14.05.) Juwenalja :)
+\item (15.05. - 26.05) Przygotowanie raportu, przedstawienie pierwszego etapu prac nad projektem.
+\item (27.05. - 11.06) Przygotowanie gotowej aplikacji, testy, rozwiązywanie problemów.
+\item (12.06. - 22.06) Przygotowanie dokumentacji technicznej, przedstawienie gotowego projektu.
+\end{itemize}
+
+\tableofcontents
 
 \section{Bibliografia}
 \url{https://edu.domski.pl/kursy/sterowniki-robotow/sr-projekt/}
