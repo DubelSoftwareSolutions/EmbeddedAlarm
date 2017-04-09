@@ -1,0 +1,33 @@
+/*
+ * GSM.c
+ *
+ *  Created on: 10.04.2017
+ *      Author: Krzysztof
+ */
+#include "main.h"
+#include "stm32f7xx_hal.h"
+#include "rtc.h"
+#include "usart.h"
+#include "GSM.h"
+
+HAL_StatusTypeDef GSM_AutoBaudrate_Synchronize(RTC_TimeTypeDef p_RTCtime)
+{
+  while(p_RTCtime.Seconds<GSM_AUTOBAUDRATE_ONSET)
+	  HAL_RTC_GetTime(&hrtc,&p_RTCtime,RTC_FORMAT_BCD);
+
+  char AutoBaudrateMessage[GSM_AUTOBAUDRATE_MESSAGE_SIZE];
+  char AutoBaudrateReturnMessage;
+  uint16_t MessageSize=sprintf(AutoBaudrateMessage,"AT");
+  uint8_t i;
+
+  for(i=0; AutoBaudrateReturnMessage != "OK" && i<GSM_AUTOBAUDRATE_ATTEMPTS; ++i)
+  {
+	  HAL_UART_Transmit(&huart8,AutoBaudrateMessage,MessageSize, GSM_TRANSMISION_TIMEOUT);
+	  HAL_UART_Receive(&huart8,AutoBaudrateReturnMessage,
+			  GSM_AUTOBAUDRATE_MESSAGE_SIZE, GSM_AUTOBAUDRATE_TIMEOUT);
+  }
+  if(AutoBaudrateReturnMessage == "OK" )
+	  return HAL_OK;
+  else
+	  return HAL_ERROR;
+}

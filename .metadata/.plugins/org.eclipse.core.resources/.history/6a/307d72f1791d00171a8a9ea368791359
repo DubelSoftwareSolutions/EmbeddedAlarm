@@ -1,0 +1,16 @@
+/*
+ * GSM.h
+ *
+ *  Created on: 10.04.2017
+ *      Author: Krzysztof
+ */
+
+#ifndef GSM_H_
+#define GSM_H_
+
+#define GSM_AUTOBAUDRATE_ONSET 3 //seconds
+#define GSM_AUTOBAUDRATE_TIMEOUT 1 //seconds
+
+void GSM_AutoBaudrate_Synchronize();
+
+#endif /* GSM_H_ */
