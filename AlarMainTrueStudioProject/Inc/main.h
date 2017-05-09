@@ -40,6 +40,8 @@
 /* USER CODE END Includes */
 
 /* Private define ------------------------------------------------------------*/
+#define TIM6_PRESCALER 1079
+#define TIM6_COUNTER 9999
 
 #define ACC_SS_Pin GPIO_PIN_4
 #define ACC_SS_GPIO_Port GPIOE

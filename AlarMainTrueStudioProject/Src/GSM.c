@@ -4,31 +4,98 @@
  *  Created on: 10.04.2017
  *      Author: Krzysztof
  */
-#include "main.h"
 #include "stm32f7xx_hal.h"
 #include "rtc.h"
+#include "tim.h"
 #include "usart.h"
+#include <stdlib.h>
 #include "string.h"
 #include "GSM.h"
 
-HAL_StatusTypeDef GSM_AutoBaudrate_Synchronize(RTC_TimeTypeDef p_RTCtime)
+unsigned char g_GSM_ReceivedData[20];
+volatile uint8_t g_GSM_ATReadyFlag=0;
+volatile uint8_t g_GSM_BaudrateSetFlag=0;
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
-  while(p_RTCtime.Seconds<GSM_AUTOBAUDRATE_ONSET)
-	  HAL_RTC_GetTime(&hrtc,&p_RTCtime,RTC_FORMAT_BCD);
+	if(htim==&htim6)
+		HAL_UART_Transmit_IT(&GSM_huart,"AT\r\n",GSM_AUTOBAUDRATE_MESSAGE_SIZE);
+}
 
-  char AutoBaudrateMessage[GSM_AUTOBAUDRATE_MESSAGE_SIZE];
-  char AutoBaudrateReturnMessage[GSM_AUTOBAUDRATE_MESSAGE_SIZE];
-  uint16_t MessageSize=sprintf(AutoBaudrateMessage,"AT");
-  uint8_t i;
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart)
+{
+	if(huart==&GSM_huart)
+	{
+		if(!g_GSM_ATReadyFlag)
+			GSM_VerifyATReady();
+		else if(!g_GSM_BaudrateSetFlag)
+			GSM_VerifyAutoBaudrate();
+	}
+}
 
-  for(i=0; strcmp(AutoBaudrateReturnMessage,"OK")!= 0 && i<GSM_AUTOBAUDRATE_ATTEMPTS; ++i)
-  {
-	  HAL_UART_Transmit(&huart8,AutoBaudrateMessage,MessageSize, GSM_TRANSMISION_TIMEOUT);
-	  HAL_UART_Receive(&huart8,AutoBaudrateReturnMessage,
-			  GSM_AUTOBAUDRATE_MESSAGE_SIZE, GSM_AUTOBAUDRATE_TIMEOUT);
-  }
-  if(strcmp(AutoBaudrateReturnMessage,"OK") == 0)
-	  return HAL_OK;
-  else
-	  return HAL_ERROR;
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef* huart)
+{
+	if(huart==&GSM_huart)
+		if(!g_GSM_BaudrateSetFlag)
+			HAL_UART_Receive_IT(&GSM_huart,g_GSM_ReceivedData,GSM_RETURN_MESSAGE_SIZE+5);
+}
+
+void GSM_WaitForATReady()
+{
+	HAL_GPIO_WritePin(GSM_PWRKEY_GPIO_Port,GSM_PWRKEY_Pin,GPIO_PIN_SET);
+	HAL_UART_Receive_IT(&GSM_huart,g_GSM_ReceivedData,GSM_ATREADY_MESSAGE_SIZE);
+}
+
+void GSM_VerifyATReady()
+{
+	if(strncmp(g_GSM_ReceivedData,GSM_ATREADY_MESSAGE,GSM_ATREADY_MESSAGE_SIZE-2)==0)
+		g_GSM_ATReadyFlag=1;
+	else
+	{
+		g_GSM_ATReadyFlag=0;
+		HAL_GPIO_WritePin(GSM_PWRKEY_GPIO_Port,GSM_PWRKEY_Pin,GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GSM_PWRKEY_GPIO_Port,GSM_PWRKEY_Pin,GPIO_PIN_SET);
+		HAL_UART_Receive_IT(&GSM_huart,g_GSM_ReceivedData,GSM_ATREADY_MESSAGE_SIZE);
+	}
+}
+
+uint8_t GSM_isATReady()
+{
+	if(g_GSM_ATReadyFlag)
+		return 1;
+	else
+		return 0;
+}
+
+void GSM_AutoBaudrate_Synchronize()
+{
+	g_GSM_ATReadyFlag=1;
+	if(g_GSM_ATReadyFlag)
+		if(!g_GSM_BaudrateSetFlag)
+		{
+			HAL_TIM_Base_Start_IT(&htim6);
+			HAL_UART_Transmit_IT(&GSM_huart,"AT\r\n",GSM_AUTOBAUDRATE_MESSAGE_SIZE);
+		}
+}
+
+void GSM_VerifyAutoBaudrate()
+{
+	if(strncmp(g_GSM_ReceivedData,"OK\r\n",GSM_RETURN_MESSAGE_SIZE)==0)
+	{
+		g_GSM_BaudrateSetFlag=1;
+		HAL_TIM_Base_Stop_IT(&htim6);
+	}
+	else
+	{
+		g_GSM_BaudrateSetFlag=0;
+		HAL_UART_Transmit_IT(&GSM_huart,"AT\r\n",GSM_AUTOBAUDRATE_MESSAGE_SIZE);
+	}
+}
+
+uint8_t GSM_isBaudrateSet()
+{
+	if(g_GSM_BaudrateSetFlag)
+		return 1;
+	else
+		return 0;
 }
