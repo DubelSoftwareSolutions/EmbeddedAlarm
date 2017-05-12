@@ -6,5 +6,6 @@
 *.log
 *.gz
 *.xlsx
+*.o
 
 ./.metadata/.plugins/org.eclipse*
