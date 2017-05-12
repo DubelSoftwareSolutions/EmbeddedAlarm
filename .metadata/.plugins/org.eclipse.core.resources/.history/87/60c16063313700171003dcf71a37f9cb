@@ -1,0 +1,18 @@
+/*
+ * EEPROM.h
+ *
+ *  Created on: 12.05.2017
+ *      Author: Krzysztof
+ */
+
+#ifndef EEPROM_H_
+#define EEPROM_H_
+
+#define PositionLogCapacity;
+
+typedef struct EepromStruct_t
+{
+	uint16_t Positions[]
+} EepromStruct_t;
+
+#endif /* EEPROM_H_ */

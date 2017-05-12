@@ -8,7 +8,7 @@
 #ifndef GSM_H_
 #define GSM_H_
 
-#define GSM_huart huart8
+#define GSM_huart huart6
 
 #define GSM_ATREADY_MESSAGE_SIZE 19 //bytes
 #define GSM_ATREADY_TIMEOUT 3000 //milliseconds

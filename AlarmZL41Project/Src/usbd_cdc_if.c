@@ -44,6 +44,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "usbd_cdc_if.h"
 /* USER CODE BEGIN INCLUDE */
+#include <string.h>
 /* USER CODE END INCLUDE */
 
 /** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
@@ -70,8 +71,8 @@
 /* USER CODE BEGIN PRIVATE_DEFINES */
 /* Define size for the receive and transmit buffer over CDC */
 /* It's up to user to redefine and/or remove those define */
-#define APP_RX_DATA_SIZE  4
-#define APP_TX_DATA_SIZE  4
+#define APP_RX_DATA_SIZE  50
+#define APP_TX_DATA_SIZE  50
 /* USER CODE END PRIVATE_DEFINES */
 /**
   * @}
@@ -263,6 +264,16 @@ static int8_t CDC_Receive_FS (uint8_t* Buf, uint32_t *Len)
   /* USER CODE BEGIN 6 */
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
   USBD_CDC_ReceivePacket(&hUsbDeviceFS);
+
+  extern uint8_t g_ReceivedDataBuffer[APP_RX_DATA_SIZE];
+  extern uint8_t g_USBRcvCpltFlag;
+
+  for(uint8_t i=0; i<APP_RX_DATA_SIZE;++i)
+	  g_ReceivedDataBuffer[i]=0;
+
+  strlcpy(g_ReceivedDataBuffer,Buf,(*Len)+1);
+  g_USBRcvCpltFlag=1;
+
   return (USBD_OK);
   /* USER CODE END 6 */ 
 }

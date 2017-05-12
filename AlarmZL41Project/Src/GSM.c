@@ -4,7 +4,7 @@
  *  Created on: 10.04.2017
  *      Author: Krzysztof
  */
-#include "stm32f7xx_hal.h"
+#include "stm32f4xx_hal.h"
 #include "rtc.h"
 #include "tim.h"
 #include "usart.h"
@@ -42,7 +42,6 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef* huart)
 
 void GSM_WaitForATReady()
 {
-	HAL_GPIO_WritePin(GSM_PWRKEY_GPIO_Port,GSM_PWRKEY_Pin,GPIO_PIN_SET);
 	HAL_UART_Receive_IT(&GSM_huart,g_GSM_ReceivedData,GSM_ATREADY_MESSAGE_SIZE);
 }
 
@@ -53,8 +52,6 @@ void GSM_VerifyATReady()
 	else
 	{
 		g_GSM_ATReadyFlag=0;
-		HAL_GPIO_WritePin(GSM_PWRKEY_GPIO_Port,GSM_PWRKEY_Pin,GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GSM_PWRKEY_GPIO_Port,GSM_PWRKEY_Pin,GPIO_PIN_SET);
 		HAL_UART_Receive_IT(&GSM_huart,g_GSM_ReceivedData,GSM_ATREADY_MESSAGE_SIZE);
 	}
 }
