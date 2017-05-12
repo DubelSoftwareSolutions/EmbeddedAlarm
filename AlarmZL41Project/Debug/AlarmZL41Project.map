@@ -1095,9 +1095,28 @@ Discarded input sections
  .text          0x00000000        0x0 Src\Accelerometer.o
  .data          0x00000000        0x0 Src\Accelerometer.o
  .bss           0x00000000        0x0 Src\Accelerometer.o
- .debug_line    0x00000000        0x0 Src\Accelerometer.o
- .debug_str     0x00000000      0x130 Src\Accelerometer.o
+ .text.AccelerometerManagePower
+                0x00000000       0x44 Src\Accelerometer.o
+ .text.AccelerometerConfigure
+                0x00000000       0x28 Src\Accelerometer.o
+ .text.AccelerometerInit
+                0x00000000       0x12 Src\Accelerometer.o
+ .data.g_MPU6050_AccelerometerSettings
+                0x00000000        0x1 Src\Accelerometer.o
+ .data.g_MPU6050_PowerManagement2Settings
+                0x00000000        0x1 Src\Accelerometer.o
+ .data.g_MPU6050_PowerManagement1Settings
+                0x00000000        0x1 Src\Accelerometer.o
+ .debug_info    0x00000000      0x794 Src\Accelerometer.o
+ .debug_abbrev  0x00000000      0x1e4 Src\Accelerometer.o
+ .debug_loc     0x00000000       0x31 Src\Accelerometer.o
+ .debug_aranges
+                0x00000000       0x30 Src\Accelerometer.o
+ .debug_ranges  0x00000000       0x20 Src\Accelerometer.o
+ .debug_line    0x00000000      0x22e Src\Accelerometer.o
+ .debug_str     0x00000000      0x808 Src\Accelerometer.o
  .comment       0x00000000       0x7f Src\Accelerometer.o
+ .debug_frame   0x00000000       0x68 Src\Accelerometer.o
  .ARM.attributes
                 0x00000000       0x39 Src\Accelerometer.o
  .text          0x00000000        0x0 Src\EEPROM.o
@@ -2633,7 +2652,7 @@ LOAD e:/programs/stmicroelectronics/truestudio for arm 7.0.1/armtools/bin/../lib
                 0x00000a45       0x22 e:/programs/stmicroelectronics/truestudio for arm 7.0.1/armtools/bin/../lib/gcc/arm-atollic-eabi/5.3.1/armv7e-m/fpu/crtn.o
 OUTPUT(AlarmZL41Project.elf elf32-littlearm)
 
-.debug_info     0x00000000    0x1c1ea
+.debug_info     0x00000000    0x1c245
  .debug_info    0x00000000      0x91b Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.o
  .debug_info    0x0000091b      0xf01 Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.o
  .debug_info    0x0000181c      0xa28 Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.o
@@ -2657,20 +2676,20 @@ OUTPUT(AlarmZL41Project.elf elf32-littlearm)
  .debug_info    0x00013fa6      0x77c Src\USBTransmission.o
  .debug_info    0x00014722      0x6b7 Src\gpio.o
  .debug_info    0x00014dd9      0x9a3 Src\i2c.o
- .debug_info    0x0001577c      0x8ec Src\main.o
- .debug_info    0x00016068      0x676 Src\rtc.o
- .debug_info    0x000166de      0x3e0 Src\stm32f4xx_hal_msp.o
- .debug_info    0x00016abe      0xcb5 Src\stm32f4xx_it.o
- .debug_info    0x00017773      0x4fc Src\system_stm32f4xx.o
- .debug_info    0x00017c6f      0xb04 Src\tim.o
- .debug_info    0x00018773      0xc4e Src\usart.o
- .debug_info    0x000193c1      0x615 Src\usb_device.o
- .debug_info    0x000199d6      0x872 Src\usbd_cdc_if.o
- .debug_info    0x0001a248     0x1a0a Src\usbd_conf.o
- .debug_info    0x0001bc52      0x4f4 Src\usbd_desc.o
- .debug_info    0x0001c146       0xa4 startup\startup_stm32f417xx.o
+ .debug_info    0x0001577c      0x947 Src\main.o
+ .debug_info    0x000160c3      0x676 Src\rtc.o
+ .debug_info    0x00016739      0x3e0 Src\stm32f4xx_hal_msp.o
+ .debug_info    0x00016b19      0xcb5 Src\stm32f4xx_it.o
+ .debug_info    0x000177ce      0x4fc Src\system_stm32f4xx.o
+ .debug_info    0x00017cca      0xb04 Src\tim.o
+ .debug_info    0x000187ce      0xc4e Src\usart.o
+ .debug_info    0x0001941c      0x615 Src\usb_device.o
+ .debug_info    0x00019a31      0x872 Src\usbd_cdc_if.o
+ .debug_info    0x0001a2a3     0x1a0a Src\usbd_conf.o
+ .debug_info    0x0001bcad      0x4f4 Src\usbd_desc.o
+ .debug_info    0x0001c1a1       0xa4 startup\startup_stm32f417xx.o
 
-.debug_abbrev   0x00000000     0x4906
+.debug_abbrev   0x00000000     0x4915
  .debug_abbrev  0x00000000      0x26b Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.o
  .debug_abbrev  0x0000026b      0x32f Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.o
  .debug_abbrev  0x0000059a      0x2dd Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.o
@@ -2694,18 +2713,18 @@ OUTPUT(AlarmZL41Project.elf elf32-littlearm)
  .debug_abbrev  0x00003164      0x1e8 Src\USBTransmission.o
  .debug_abbrev  0x0000334c      0x168 Src\gpio.o
  .debug_abbrev  0x000034b4      0x1c1 Src\i2c.o
- .debug_abbrev  0x00003675      0x1be Src\main.o
- .debug_abbrev  0x00003833      0x15e Src\rtc.o
- .debug_abbrev  0x00003991       0xc2 Src\stm32f4xx_hal_msp.o
- .debug_abbrev  0x00003a53      0x20e Src\stm32f4xx_it.o
- .debug_abbrev  0x00003c61      0x101 Src\system_stm32f4xx.o
- .debug_abbrev  0x00003d62      0x1c5 Src\tim.o
- .debug_abbrev  0x00003f27      0x1ba Src\usart.o
- .debug_abbrev  0x000040e1      0x170 Src\usb_device.o
- .debug_abbrev  0x00004251      0x246 Src\usbd_cdc_if.o
- .debug_abbrev  0x00004497      0x295 Src\usbd_conf.o
- .debug_abbrev  0x0000472c      0x1c8 Src\usbd_desc.o
- .debug_abbrev  0x000048f4       0x12 startup\startup_stm32f417xx.o
+ .debug_abbrev  0x00003675      0x1cd Src\main.o
+ .debug_abbrev  0x00003842      0x15e Src\rtc.o
+ .debug_abbrev  0x000039a0       0xc2 Src\stm32f4xx_hal_msp.o
+ .debug_abbrev  0x00003a62      0x20e Src\stm32f4xx_it.o
+ .debug_abbrev  0x00003c70      0x101 Src\system_stm32f4xx.o
+ .debug_abbrev  0x00003d71      0x1c5 Src\tim.o
+ .debug_abbrev  0x00003f36      0x1ba Src\usart.o
+ .debug_abbrev  0x000040f0      0x170 Src\usb_device.o
+ .debug_abbrev  0x00004260      0x246 Src\usbd_cdc_if.o
+ .debug_abbrev  0x000044a6      0x295 Src\usbd_conf.o
+ .debug_abbrev  0x0000473b      0x1c8 Src\usbd_desc.o
+ .debug_abbrev  0x00004903       0x12 startup\startup_stm32f417xx.o
 
 .debug_loc      0x00000000     0xe5a5
  .debug_loc     0x00000000       0x91 Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.o
@@ -2846,7 +2865,7 @@ OUTPUT(AlarmZL41Project.elf elf32-littlearm)
  .debug_ranges  0x00001518       0x40 Src\usbd_desc.o
  .debug_ranges  0x00001558       0x20 startup\startup_stm32f417xx.o
 
-.debug_line     0x00000000     0xa5d1
+.debug_line     0x00000000     0xa5e2
  .debug_line    0x00000000      0x3c1 Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.o
  .debug_line    0x000003c1      0x42c Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.o
  .debug_line    0x000007ed      0x53e Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.o
@@ -2870,18 +2889,18 @@ OUTPUT(AlarmZL41Project.elf elf32-littlearm)
  .debug_line    0x00008198      0x2de Src\USBTransmission.o
  .debug_line    0x00008476      0x1ed Src\gpio.o
  .debug_line    0x00008663      0x255 Src\i2c.o
- .debug_line    0x000088b8      0x2c7 Src\main.o
- .debug_line    0x00008b7f      0x252 Src\rtc.o
- .debug_line    0x00008dd1      0x1d8 Src\stm32f4xx_hal_msp.o
- .debug_line    0x00008fa9      0x328 Src\stm32f4xx_it.o
- .debug_line    0x000092d1      0x1c3 Src\system_stm32f4xx.o
- .debug_line    0x00009494      0x268 Src\tim.o
- .debug_line    0x000096fc      0x2b3 Src\usart.o
- .debug_line    0x000099af      0x210 Src\usb_device.o
- .debug_line    0x00009bbf      0x29f Src\usbd_cdc_if.o
- .debug_line    0x00009e5e      0x4e8 Src\usbd_conf.o
- .debug_line    0x0000a346      0x20c Src\usbd_desc.o
- .debug_line    0x0000a552       0x7f startup\startup_stm32f417xx.o
+ .debug_line    0x000088b8      0x2d8 Src\main.o
+ .debug_line    0x00008b90      0x252 Src\rtc.o
+ .debug_line    0x00008de2      0x1d8 Src\stm32f4xx_hal_msp.o
+ .debug_line    0x00008fba      0x328 Src\stm32f4xx_it.o
+ .debug_line    0x000092e2      0x1c3 Src\system_stm32f4xx.o
+ .debug_line    0x000094a5      0x268 Src\tim.o
+ .debug_line    0x0000970d      0x2b3 Src\usart.o
+ .debug_line    0x000099c0      0x210 Src\usb_device.o
+ .debug_line    0x00009bd0      0x29f Src\usbd_cdc_if.o
+ .debug_line    0x00009e6f      0x4e8 Src\usbd_conf.o
+ .debug_line    0x0000a357      0x20c Src\usbd_desc.o
+ .debug_line    0x0000a563       0x7f startup\startup_stm32f417xx.o
 
 .debug_str      0x00000000     0x6169
  .debug_str     0x00000000      0xa90 Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.o
@@ -2931,7 +2950,7 @@ OUTPUT(AlarmZL41Project.elf elf32-littlearm)
  .debug_str     0x00005b47       0x5a Src\i2c.o
                                 0x8f1 (size before relaxing)
  .debug_str     0x00005ba1       0x88 Src\main.o
-                                0xb20 (size before relaxing)
+                                0xb60 (size before relaxing)
  .debug_str     0x00005c29       0x39 Src\rtc.o
                                 0x586 (size before relaxing)
  .debug_str     0x00005c62       0x27 Src\stm32f4xx_hal_msp.o

@@ -1,0 +1,22 @@
+/*
+ * Accelerometer.h
+ *
+ *  Created on: 11.04.2017
+ *      Author: Krzysztof
+ */
+
+#include "stm32f4xx_hal.h"
+#include "main.h"
+
+#ifndef ACCELEROMETER_H_
+#define ACCELEROMETER_H_
+
+#define ACC_I2C_HANDLE hi2c1
+#define MPU6050_DEVICE_ADDRESS 0x68
+#define MPU6050_RA_PWR_MGMT1 0x6B
+
+uint8_t g_MPU6050_PowerManagementSettings = 0bx0
+
+void AccelerometerInit();
+
+#endif /* ACCELEROMETER_H_ */

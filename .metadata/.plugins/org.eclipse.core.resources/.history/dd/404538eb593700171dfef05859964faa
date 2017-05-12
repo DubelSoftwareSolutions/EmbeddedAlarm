@@ -1,0 +1,9 @@
+/*
+ * Accelerometer.c
+ *
+ *  Created on: 11.04.2017
+ *      Author: Krzysztof
+ */
+
+#include"i2c.h"
+#include"Accelerometer.h"

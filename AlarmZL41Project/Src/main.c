@@ -52,7 +52,11 @@
 
 /* USER CODE BEGIN Includes */
 #include "usbd_cdc_if.h"
+#include "Accelerometer.h"
+#include "EEPROM.h"
+#include "PositionLog.h"
 #include "USBTransmission.h"
+#include "GSM.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
