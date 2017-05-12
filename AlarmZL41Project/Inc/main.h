@@ -52,6 +52,8 @@
 /* Private define ------------------------------------------------------------*/
 #define TIM6_PRESCALER 8399
 #define TIM6_COUNTER 999
+#define TIM7_PRESCALER 8399
+#define TIM7_COUNTER 9999
 
 #define Accelerometer_Interrupt_Pin GPIO_PIN_7
 #define Accelerometer_Interrupt_GPIO_Port GPIOE

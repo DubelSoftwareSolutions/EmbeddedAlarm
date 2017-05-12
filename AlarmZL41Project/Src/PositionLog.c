@@ -5,5 +5,11 @@
  *      Author: Krzysztof
  */
 
+#include"rtc.h"
 #include"EEPROM.h"
 #include"PositionLog.h"
+
+void PositionLog_PushBack()
+{
+
+}

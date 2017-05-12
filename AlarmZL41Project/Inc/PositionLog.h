@@ -20,4 +20,6 @@ typedef struct PositionLogStruct_t
 
 PositionLogStruct_t g_PositionLog;
 
+void PositionLog_PushBack();
+
 #endif /* POSITIONLOG_H_ */

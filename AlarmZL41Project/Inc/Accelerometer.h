@@ -13,6 +13,7 @@
 
 #define ACC_I2C_HANDLE hi2c1
 #define ACC_I2C_TIMEOUT 100
+#define ACC_AXIS_COUNT 3
 
 #define MPU6050_DEVICE_ADDRESS	0x68
 #define MPU6050_PWR_MGMT1 		0x6B
@@ -32,8 +33,12 @@
 #define MPU6050_ACC_ZOUT_H		0x3F
 #define MPU6050_ACC_ZOUT_L		0x40
 
+uint16_t g_AxisMeasurements[ACC_AXIS_COUNT];
+uint8_t g_MotionFlag;
+
 HAL_StatusTypeDef AccelerometerManagePower();
 HAL_StatusTypeDef AccelerometerConfigure();
+HAL_StatusTypeDef AccelerometerMotionIntConfigure();
 HAL_StatusTypeDef AccelerometerInit();
-
+HAL_StatusTypeDef GetAccelerometerData();
 #endif /* ACCELEROMETER_H_ */

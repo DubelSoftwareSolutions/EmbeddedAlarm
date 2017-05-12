@@ -57,6 +57,7 @@
 #include "PositionLog.h"
 #include "USBTransmission.h"
 #include "GSM.h"
+#include "GPS.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -102,15 +103,23 @@ int main(void)
   MX_USART6_UART_Init();
   MX_TIM6_Init();
   MX_RTC_Init();
+  MX_TIM7_Init();
 
   /* USER CODE BEGIN 2 */
-
+  AccelerometerInit();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  if(g_MotionFlag)
+	  {
+		  GPS_GetPosition();
+		  GSM_StartSendingPositionAlert();
+		  PositionLog_PushBack();
+		  HAL_Delay(100);
+	  }
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */

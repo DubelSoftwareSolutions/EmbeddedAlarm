@@ -15,11 +15,20 @@
 unsigned char g_GSM_ReceivedData[20];
 volatile uint8_t g_GSM_ATReadyFlag=0;
 volatile uint8_t g_GSM_BaudrateSetFlag=0;
+volatile uint8_t g_Tim7Seconds=0;
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
 	if(htim==&htim6)
 		HAL_UART_Transmit_IT(&GSM_huart,"AT\r\n",GSM_AUTOBAUDRATE_MESSAGE_SIZE);
+
+	if(htim==&htim7)
+	{
+		++g_Tim7Seconds;
+		g_Tim7Seconds%=TIM7_POSTSCALER;
+		if(g_Tim7Seconds==0)
+			GSM_SendPositionSMS();
+	}
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart)
