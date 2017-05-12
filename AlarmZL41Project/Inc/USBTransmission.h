@@ -18,7 +18,7 @@
 #define USB_LOG_REQUEST_SIZE 3
 
 volatile uint8_t g_ReceivedDataBuffer[MAX_INPUT_DATA_SIZE];
-volatile uint8_t g_USBRcvCpltFlag = 0;
+volatile uint8_t g_USBRcvCpltFlag;
 
 USBD_StatusTypeDef USB_TransmitPositionLog();
 void USB_CheckReceivedData();

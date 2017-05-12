@@ -51,7 +51,8 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "usbd_cdc_if.h"
+#include "USBTransmission.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/

@@ -5,6 +5,8 @@
 		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="E:\ShortPathWorkspace\USBDevice"/>
+			<item value="C:\Users\Krzysztof\Documents\Studia\KNR KoNaR\Projekty\Nauka_Testy"/>
 			<item value="C:\Users\Krzysztof\Documents\Studia\Semestr 6\Sterowniki Robotów\sterop"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">

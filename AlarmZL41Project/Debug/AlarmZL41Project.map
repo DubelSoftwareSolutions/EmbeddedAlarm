@@ -89,6 +89,7 @@ huart4              0x40              Src\usart.o
 g_ReceivedDataBuffer
                     0x32              Src\USBTransmission.o
 USBD_StrDesc        0x200             Src\usbd_desc.o
+g_USBRcvCpltFlag    0x1               Src\USBTransmission.o
 
 Discarded input sections
 
@@ -2450,7 +2451,7 @@ LOAD e:/programs/stmicroelectronics/truestudio for arm 7.0.1/armtools/bin/../lib
                 0x10000000                _eccmram = .
                 0x10000000                . = ALIGN (0x4)
 
-.bss            0x2000065c      0xa54
+.bss            0x2000065c      0xa50
                 0x2000065c                _sbss = .
                 0x2000065c                __bss_start__ = _sbss
  *(.bss)
@@ -2466,66 +2467,63 @@ LOAD e:/programs/stmicroelectronics/truestudio for arm 7.0.1/armtools/bin/../lib
  .bss.g_GSM_BaudrateSetFlag
                 0x2000067b        0x1 Src\GSM.o
                 0x2000067b                g_GSM_BaudrateSetFlag
- .bss.g_USBRcvCpltFlag
-                0x2000067c        0x1 Src\USBTransmission.o
-                0x2000067c                g_USBRcvCpltFlag
- *fill*         0x2000067d        0x3 
  .bss.__malloc_max_total_mem
-                0x20000680        0x4 e:/programs/stmicroelectronics/truestudio for arm 7.0.1/armtools/bin/../lib/gcc/arm-atollic-eabi/5.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
-                0x20000680                __malloc_max_total_mem
+                0x2000067c        0x4 e:/programs/stmicroelectronics/truestudio for arm 7.0.1/armtools/bin/../lib/gcc/arm-atollic-eabi/5.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
+                0x2000067c                __malloc_max_total_mem
  .bss.__malloc_max_sbrked_mem
-                0x20000684        0x4 e:/programs/stmicroelectronics/truestudio for arm 7.0.1/armtools/bin/../lib/gcc/arm-atollic-eabi/5.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
-                0x20000684                __malloc_max_sbrked_mem
+                0x20000680        0x4 e:/programs/stmicroelectronics/truestudio for arm 7.0.1/armtools/bin/../lib/gcc/arm-atollic-eabi/5.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
+                0x20000680                __malloc_max_sbrked_mem
  .bss.__malloc_top_pad
-                0x20000688        0x4 e:/programs/stmicroelectronics/truestudio for arm 7.0.1/armtools/bin/../lib/gcc/arm-atollic-eabi/5.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
-                0x20000688                __malloc_top_pad
+                0x20000684        0x4 e:/programs/stmicroelectronics/truestudio for arm 7.0.1/armtools/bin/../lib/gcc/arm-atollic-eabi/5.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
+                0x20000684                __malloc_top_pad
  .bss.__malloc_current_mallinfo
-                0x2000068c       0x28 e:/programs/stmicroelectronics/truestudio for arm 7.0.1/armtools/bin/../lib/gcc/arm-atollic-eabi/5.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
-                0x2000068c                __malloc_current_mallinfo
+                0x20000688       0x28 e:/programs/stmicroelectronics/truestudio for arm 7.0.1/armtools/bin/../lib/gcc/arm-atollic-eabi/5.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
+                0x20000688                __malloc_current_mallinfo
  .bss.heap_end.4169
-                0x200006b4        0x4 e:/programs/stmicroelectronics/truestudio for arm 7.0.1/armtools/bin/../lib/gcc/arm-atollic-eabi/5.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu\libnosys.a(sbrk.o)
+                0x200006b0        0x4 e:/programs/stmicroelectronics/truestudio for arm 7.0.1/armtools/bin/../lib/gcc/arm-atollic-eabi/5.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu\libnosys.a(sbrk.o)
  *(COMMON)
- COMMON         0x200006b8        0x4 Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.o
-                0x200006b8                uwTick
- COMMON         0x200006bc       0x14 Src\GSM.o
-                0x200006bc                g_GSM_ReceivedData
- COMMON         0x200006d0       0x32 Src\USBTransmission.o
-                0x200006d0                g_ReceivedDataBuffer
- *fill*         0x20000702        0x2 
- COMMON         0x20000704       0x54 Src\i2c.o
-                0x20000704                hi2c1
- COMMON         0x20000758       0x20 Src\rtc.o
-                0x20000758                hrtc
- COMMON         0x20000778       0x3c Src\tim.o
-                0x20000778                htim6
- COMMON         0x200007b4       0x80 Src\usart.o
-                0x200007b4                huart6
-                0x200007f4                huart4
- COMMON         0x20000834      0x224 Src\usb_device.o
-                0x20000834                hUsbDeviceFS
- COMMON         0x20000a58       0x64 Src\usbd_cdc_if.o
-                0x20000a58                UserRxBufferFS
-                0x20000a8a                UserTxBufferFS
- COMMON         0x20000abc      0x3f0 Src\usbd_conf.o
-                0x20000abc                hpcd_USB_OTG_FS
- COMMON         0x20000eac      0x200 Src\usbd_desc.o
-                0x20000eac                USBD_StrDesc
- COMMON         0x200010ac        0x4 e:/programs/stmicroelectronics/truestudio for arm 7.0.1/armtools/bin/../lib/gcc/arm-atollic-eabi/5.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu\libc.a(lib_a-reent.o)
-                0x200010ac                errno
-                0x200010b0                . = ALIGN (0x4)
-                0x200010b0                _ebss = .
-                0x200010b0                __bss_end__ = _ebss
+ COMMON         0x200006b4        0x4 Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.o
+                0x200006b4                uwTick
+ COMMON         0x200006b8       0x14 Src\GSM.o
+                0x200006b8                g_GSM_ReceivedData
+ COMMON         0x200006cc       0x33 Src\USBTransmission.o
+                0x200006cc                g_ReceivedDataBuffer
+                0x200006fe                g_USBRcvCpltFlag
+ *fill*         0x200006ff        0x1 
+ COMMON         0x20000700       0x54 Src\i2c.o
+                0x20000700                hi2c1
+ COMMON         0x20000754       0x20 Src\rtc.o
+                0x20000754                hrtc
+ COMMON         0x20000774       0x3c Src\tim.o
+                0x20000774                htim6
+ COMMON         0x200007b0       0x80 Src\usart.o
+                0x200007b0                huart6
+                0x200007f0                huart4
+ COMMON         0x20000830      0x224 Src\usb_device.o
+                0x20000830                hUsbDeviceFS
+ COMMON         0x20000a54       0x64 Src\usbd_cdc_if.o
+                0x20000a54                UserRxBufferFS
+                0x20000a86                UserTxBufferFS
+ COMMON         0x20000ab8      0x3f0 Src\usbd_conf.o
+                0x20000ab8                hpcd_USB_OTG_FS
+ COMMON         0x20000ea8      0x200 Src\usbd_desc.o
+                0x20000ea8                USBD_StrDesc
+ COMMON         0x200010a8        0x4 e:/programs/stmicroelectronics/truestudio for arm 7.0.1/armtools/bin/../lib/gcc/arm-atollic-eabi/5.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu\libc.a(lib_a-reent.o)
+                0x200010a8                errno
+                0x200010ac                . = ALIGN (0x4)
+                0x200010ac                _ebss = .
+                0x200010ac                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x200010b0      0x600
-                0x200010b0                . = ALIGN (0x4)
-                0x200010b0                PROVIDE (end, .)
+                0x200010ac      0x600
+                0x200010ac                . = ALIGN (0x4)
+                0x200010ac                PROVIDE (end, .)
                 [!provide]                PROVIDE (_end, .)
-                0x200012b0                . = (. + _Min_Heap_Size)
- *fill*         0x200010b0      0x200 
-                0x200016b0                . = (. + _Min_Stack_Size)
- *fill*         0x200012b0      0x400 
-                0x200016b0                . = ALIGN (0x4)
+                0x200012ac                . = (. + _Min_Heap_Size)
+ *fill*         0x200010ac      0x200 
+                0x200016ac                . = (. + _Min_Stack_Size)
+ *fill*         0x200012ac      0x400 
+                0x200016ac                . = ALIGN (0x4)
 
 /DISCARD/
  libc.a(*)
@@ -2635,7 +2633,7 @@ LOAD e:/programs/stmicroelectronics/truestudio for arm 7.0.1/armtools/bin/../lib
                 0x00000a45       0x22 e:/programs/stmicroelectronics/truestudio for arm 7.0.1/armtools/bin/../lib/gcc/arm-atollic-eabi/5.3.1/armv7e-m/fpu/crtn.o
 OUTPUT(AlarmZL41Project.elf elf32-littlearm)
 
-.debug_info     0x00000000    0x1c1ae
+.debug_info     0x00000000    0x1c1ea
  .debug_info    0x00000000      0x91b Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.o
  .debug_info    0x0000091b      0xf01 Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.o
  .debug_info    0x0000181c      0xa28 Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.o
@@ -2659,20 +2657,20 @@ OUTPUT(AlarmZL41Project.elf elf32-littlearm)
  .debug_info    0x00013fa6      0x77c Src\USBTransmission.o
  .debug_info    0x00014722      0x6b7 Src\gpio.o
  .debug_info    0x00014dd9      0x9a3 Src\i2c.o
- .debug_info    0x0001577c      0x8b0 Src\main.o
- .debug_info    0x0001602c      0x676 Src\rtc.o
- .debug_info    0x000166a2      0x3e0 Src\stm32f4xx_hal_msp.o
- .debug_info    0x00016a82      0xcb5 Src\stm32f4xx_it.o
- .debug_info    0x00017737      0x4fc Src\system_stm32f4xx.o
- .debug_info    0x00017c33      0xb04 Src\tim.o
- .debug_info    0x00018737      0xc4e Src\usart.o
- .debug_info    0x00019385      0x615 Src\usb_device.o
- .debug_info    0x0001999a      0x872 Src\usbd_cdc_if.o
- .debug_info    0x0001a20c     0x1a0a Src\usbd_conf.o
- .debug_info    0x0001bc16      0x4f4 Src\usbd_desc.o
- .debug_info    0x0001c10a       0xa4 startup\startup_stm32f417xx.o
+ .debug_info    0x0001577c      0x8ec Src\main.o
+ .debug_info    0x00016068      0x676 Src\rtc.o
+ .debug_info    0x000166de      0x3e0 Src\stm32f4xx_hal_msp.o
+ .debug_info    0x00016abe      0xcb5 Src\stm32f4xx_it.o
+ .debug_info    0x00017773      0x4fc Src\system_stm32f4xx.o
+ .debug_info    0x00017c6f      0xb04 Src\tim.o
+ .debug_info    0x00018773      0xc4e Src\usart.o
+ .debug_info    0x000193c1      0x615 Src\usb_device.o
+ .debug_info    0x000199d6      0x872 Src\usbd_cdc_if.o
+ .debug_info    0x0001a248     0x1a0a Src\usbd_conf.o
+ .debug_info    0x0001bc52      0x4f4 Src\usbd_desc.o
+ .debug_info    0x0001c146       0xa4 startup\startup_stm32f417xx.o
 
-.debug_abbrev   0x00000000     0x48f5
+.debug_abbrev   0x00000000     0x4906
  .debug_abbrev  0x00000000      0x26b Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.o
  .debug_abbrev  0x0000026b      0x32f Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.o
  .debug_abbrev  0x0000059a      0x2dd Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.o
@@ -2696,18 +2694,18 @@ OUTPUT(AlarmZL41Project.elf elf32-littlearm)
  .debug_abbrev  0x00003164      0x1e8 Src\USBTransmission.o
  .debug_abbrev  0x0000334c      0x168 Src\gpio.o
  .debug_abbrev  0x000034b4      0x1c1 Src\i2c.o
- .debug_abbrev  0x00003675      0x1ad Src\main.o
- .debug_abbrev  0x00003822      0x15e Src\rtc.o
- .debug_abbrev  0x00003980       0xc2 Src\stm32f4xx_hal_msp.o
- .debug_abbrev  0x00003a42      0x20e Src\stm32f4xx_it.o
- .debug_abbrev  0x00003c50      0x101 Src\system_stm32f4xx.o
- .debug_abbrev  0x00003d51      0x1c5 Src\tim.o
- .debug_abbrev  0x00003f16      0x1ba Src\usart.o
- .debug_abbrev  0x000040d0      0x170 Src\usb_device.o
- .debug_abbrev  0x00004240      0x246 Src\usbd_cdc_if.o
- .debug_abbrev  0x00004486      0x295 Src\usbd_conf.o
- .debug_abbrev  0x0000471b      0x1c8 Src\usbd_desc.o
- .debug_abbrev  0x000048e3       0x12 startup\startup_stm32f417xx.o
+ .debug_abbrev  0x00003675      0x1be Src\main.o
+ .debug_abbrev  0x00003833      0x15e Src\rtc.o
+ .debug_abbrev  0x00003991       0xc2 Src\stm32f4xx_hal_msp.o
+ .debug_abbrev  0x00003a53      0x20e Src\stm32f4xx_it.o
+ .debug_abbrev  0x00003c61      0x101 Src\system_stm32f4xx.o
+ .debug_abbrev  0x00003d62      0x1c5 Src\tim.o
+ .debug_abbrev  0x00003f27      0x1ba Src\usart.o
+ .debug_abbrev  0x000040e1      0x170 Src\usb_device.o
+ .debug_abbrev  0x00004251      0x246 Src\usbd_cdc_if.o
+ .debug_abbrev  0x00004497      0x295 Src\usbd_conf.o
+ .debug_abbrev  0x0000472c      0x1c8 Src\usbd_desc.o
+ .debug_abbrev  0x000048f4       0x12 startup\startup_stm32f417xx.o
 
 .debug_loc      0x00000000     0xe5a5
  .debug_loc     0x00000000       0x91 Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.o
@@ -2848,7 +2846,7 @@ OUTPUT(AlarmZL41Project.elf elf32-littlearm)
  .debug_ranges  0x00001518       0x40 Src\usbd_desc.o
  .debug_ranges  0x00001558       0x20 startup\startup_stm32f417xx.o
 
-.debug_line     0x00000000     0xa5bc
+.debug_line     0x00000000     0xa5d1
  .debug_line    0x00000000      0x3c1 Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.o
  .debug_line    0x000003c1      0x42c Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.o
  .debug_line    0x000007ed      0x53e Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.o
@@ -2872,18 +2870,18 @@ OUTPUT(AlarmZL41Project.elf elf32-littlearm)
  .debug_line    0x00008198      0x2de Src\USBTransmission.o
  .debug_line    0x00008476      0x1ed Src\gpio.o
  .debug_line    0x00008663      0x255 Src\i2c.o
- .debug_line    0x000088b8      0x2b2 Src\main.o
- .debug_line    0x00008b6a      0x252 Src\rtc.o
- .debug_line    0x00008dbc      0x1d8 Src\stm32f4xx_hal_msp.o
- .debug_line    0x00008f94      0x328 Src\stm32f4xx_it.o
- .debug_line    0x000092bc      0x1c3 Src\system_stm32f4xx.o
- .debug_line    0x0000947f      0x268 Src\tim.o
- .debug_line    0x000096e7      0x2b3 Src\usart.o
- .debug_line    0x0000999a      0x210 Src\usb_device.o
- .debug_line    0x00009baa      0x29f Src\usbd_cdc_if.o
- .debug_line    0x00009e49      0x4e8 Src\usbd_conf.o
- .debug_line    0x0000a331      0x20c Src\usbd_desc.o
- .debug_line    0x0000a53d       0x7f startup\startup_stm32f417xx.o
+ .debug_line    0x000088b8      0x2c7 Src\main.o
+ .debug_line    0x00008b7f      0x252 Src\rtc.o
+ .debug_line    0x00008dd1      0x1d8 Src\stm32f4xx_hal_msp.o
+ .debug_line    0x00008fa9      0x328 Src\stm32f4xx_it.o
+ .debug_line    0x000092d1      0x1c3 Src\system_stm32f4xx.o
+ .debug_line    0x00009494      0x268 Src\tim.o
+ .debug_line    0x000096fc      0x2b3 Src\usart.o
+ .debug_line    0x000099af      0x210 Src\usb_device.o
+ .debug_line    0x00009bbf      0x29f Src\usbd_cdc_if.o
+ .debug_line    0x00009e5e      0x4e8 Src\usbd_conf.o
+ .debug_line    0x0000a346      0x20c Src\usbd_desc.o
+ .debug_line    0x0000a552       0x7f startup\startup_stm32f417xx.o
 
 .debug_str      0x00000000     0x6169
  .debug_str     0x00000000      0xa90 Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.o
@@ -2933,7 +2931,7 @@ OUTPUT(AlarmZL41Project.elf elf32-littlearm)
  .debug_str     0x00005b47       0x5a Src\i2c.o
                                 0x8f1 (size before relaxing)
  .debug_str     0x00005ba1       0x88 Src\main.o
-                                0xafa (size before relaxing)
+                                0xb20 (size before relaxing)
  .debug_str     0x00005c29       0x39 Src\rtc.o
                                 0x586 (size before relaxing)
  .debug_str     0x00005c62       0x27 Src\stm32f4xx_hal_msp.o
