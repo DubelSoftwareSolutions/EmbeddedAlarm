@@ -40,7 +40,9 @@ uint8_t g_MPU6050_InterruptSettings[1] = { 0b00110000 };
  */
 uint8_t g_MPU6050_InterruptEnableSettings[1] = { 0b01000000 };
 
-uint8_t g_MPU6050_MotionInterruptThreshold[1] = { (uint16_t)(ACC_MOTION_THRESHOLD_G *  INT16_MAX / ACC_RESOLUTION_G) };
+uint8_t g_MPU6050_MotionInterruptThreshold[1] = { ACC_MOTION_THRESHOLD_mg / ACC_MOTION_THRESHOLD_RESOLUTION_mg };
+
+g_MPU6050_MotionInterruptDuration[1] = { ACC_MOTION_DURATION_ms / ACC_MOTION_DURATION_RESOLUTION_ms };
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
@@ -85,6 +87,11 @@ HAL_StatusTypeDef AccelerometerMotionIntConfigure()
 		return TransmissionStatus;
 	TransmissionStatus = HAL_I2C_Mem_Write(&ACC_I2C_HANDLE,	MPU6050_DEVICE_ADDRESS,
 				MPU6050_MOT_THR,1,g_MPU6050_MotionInterruptThreshold,1,ACC_I2C_TIMEOUT);
+	if (TransmissionStatus != HAL_OK)
+		return TransmissionStatus;
+	TransmissionStatus = HAL_I2C_Mem_Write(&ACC_I2C_HANDLE,	MPU6050_DEVICE_ADDRESS,
+				MPU6050_MOT_DUR,1,g_MPU6050_MotionInterruptDuration,1,ACC_I2C_TIMEOUT);
+	return TransmissionStatus;
 }
 
 HAL_StatusTypeDef GetAccelerometerData()
