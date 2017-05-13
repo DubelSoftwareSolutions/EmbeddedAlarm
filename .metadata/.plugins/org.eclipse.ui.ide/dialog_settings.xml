@@ -5,21 +5,11 @@
 		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
-			<item value="C:\Users\Krzysztof\Documents\Studia\Semestr 6\Roboty Mobilne\Projekt"/>
-			<item value="E:\ShortPathWorkspace\USBDevice"/>
-			<item value="C:\Users\Krzysztof\Documents\Studia\KNR KoNaR\Projekty\Nauka_Testy"/>
-			<item value="C:\Users\Krzysztof\Documents\Studia\Semestr 6\Sterowniki Robotów\sterop"/>
+			<item value="C:\Users\Krzysztof\Documents\Studia\Semestr 6\Sterowniki Robotów\sterop\AlarmZL41Project"/>
+			<item value="E:\ShortPathWorkspace\GSMtestF3"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>
 		</list>
-	</section>
-	<section name="WORKBENCH_SETTINGS">
-		<list key="ENABLED_TRANSFERS">
-		</list>
-	</section>
-	<section name="ChooseWorkspaceDialogSettings">
-		<item value="634" key="DIALOG_X_ORIGIN"/>
-		<item value="272" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

@@ -107,19 +107,13 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
   AccelerometerInit();
+  GSM_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if(g_MotionFlag)
-	  {
-		  GPS_GetPosition();
-		  GSM_StartSendingPositionAlert();
-		  PositionLog_PushBack();
-		  HAL_Delay(100);
-	  }
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */

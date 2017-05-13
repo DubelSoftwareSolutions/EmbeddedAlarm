@@ -14,18 +14,27 @@
 
 #define GSM_ATREADY_MESSAGE_SIZE 19 //bytes
 #define GSM_ATREADY_TIMEOUT 3000 //milliseconds
-#define GSM_ATREADY_MESSAGE "\0AT command ready\r\n"
 #define GSM_RETURN_MESSAGE_SIZE 4 //bytes
 #define GSM_AUTOBAUDRATE_TIMEOUT 1000 //milliseconds
 #define GSM_TRANSMISSION_TIMEOUT 100 //milliseconds
 #define GSM_AUTOBAUDRATE_MESSAGE_SIZE 4 //bytes
 #define GSM_AUTOBAUDRATE_ATTEMPTS 8
+#define GSM_SIMCARD_PIN "0897"
+#define GSM_RECEIVER_PHONE_NUMBER "664872393"
+#define GSM_MAX_MESSAGE_SIZE 50
 
-void GSM_WaitForATReady();
-void GSM_VerifyATReady();
-uint8_t GSM_isATReady();
+HAL_StatusTypeDef g_GSM_LastCommandStatus;
+
 void GSM_AutoBaudrate_Synchronize();
 void GSM_VerifyAutoBaudrate();
-uint8_t GSM_isBaudrateSet();
 
+HAL_StatusTypeDef GSM_VerifyCommand();
+void GSM_UnlockSIMCard();
+void GSM_ConfigureSMS();
+void GSM_StartSendingPosition();
+void GSM_SendPosition();
+
+void GSM_Init();
+
+uint8_t isBaudrateSet();
 #endif /* GSM_H_ */
