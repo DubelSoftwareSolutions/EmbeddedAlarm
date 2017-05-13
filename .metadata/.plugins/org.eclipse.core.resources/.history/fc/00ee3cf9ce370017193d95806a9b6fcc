@@ -1,0 +1,103 @@
+/*
+ * GSM.c
+ *
+ *  Created on: 13.05.2017
+ *      Author: Krzysztof
+ */
+
+
+#include "stm32f3xx_hal.h"
+#include "tim.h"
+#include "usart.h"
+#include <stdlib.h>
+#include "string.h"
+#include "GSM.h"
+
+unsigned char g_GSM_ReceivedData[20];
+volatile uint8_t g_GSM_ATReadyFlag=0;
+volatile uint8_t g_GSM_BaudrateSetFlag=0;
+volatile uint8_t g_Tim7Seconds=0;
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
+{
+	if(htim==&htim6)
+		HAL_UART_Transmit_IT(&GSM_huart,"AT\r\n",GSM_AUTOBAUDRATE_MESSAGE_SIZE);
+
+	if(htim==&htim7)
+	{
+		++g_Tim7Seconds;
+		g_Tim7Seconds%=TIM7_POSTSCALER;
+		if(g_Tim7Seconds==0)
+			GSM_SendPositionSMS();
+	}
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart)
+{
+	if(huart==&GSM_huart)
+	{
+		if(!g_GSM_ATReadyFlag)
+			GSM_VerifyATReady();
+		else if(!g_GSM_BaudrateSetFlag)
+			GSM_VerifyAutoBaudrate();
+	}
+}
+
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef* huart)
+{
+	if(huart==&GSM_huart)
+		if(!g_GSM_BaudrateSetFlag)
+			HAL_UART_Receive_IT(&GSM_huart,g_GSM_ReceivedData,GSM_RETURN_MESSAGE_SIZE+5);
+}
+
+void GSM_VerifyATReady()
+{
+	if(strncmp(g_GSM_ReceivedData,GSM_ATREADY_MESSAGE,GSM_ATREADY_MESSAGE_SIZE-2)==0)
+		g_GSM_ATReadyFlag=1;
+	else
+	{
+		g_GSM_ATReadyFlag=0;
+		HAL_UART_Receive_IT(&GSM_huart,g_GSM_ReceivedData,GSM_ATREADY_MESSAGE_SIZE);
+	}
+}
+
+uint8_t GSM_isATReady()
+{
+	if(g_GSM_ATReadyFlag)
+		return 1;
+	else
+		return 0;
+}
+
+void GSM_AutoBaudrate_Synchronize()
+{
+	g_GSM_ATReadyFlag=1;
+	if(g_GSM_ATReadyFlag)
+		if(!g_GSM_BaudrateSetFlag)
+		{
+			HAL_TIM_Base_Start_IT(&htim6);
+			HAL_UART_Transmit_IT(&GSM_huart,"AT\r\n",GSM_AUTOBAUDRATE_MESSAGE_SIZE);
+		}
+}
+
+void GSM_VerifyAutoBaudrate()
+{
+	if(strncmp(g_GSM_ReceivedData,"OK\r\n",GSM_RETURN_MESSAGE_SIZE)==0)
+	{
+		g_GSM_BaudrateSetFlag=1;
+		HAL_TIM_Base_Stop_IT(&htim6);
+	}
+	else
+	{
+		g_GSM_BaudrateSetFlag=0;
+		HAL_UART_Transmit_IT(&GSM_huart,"AT\r\n",GSM_AUTOBAUDRATE_MESSAGE_SIZE);
+	}
+}
+
+uint8_t GSM_isBaudrateSet()
+{
+	if(g_GSM_BaudrateSetFlag)
+		return 1;
+	else
+		return 0;
+}
