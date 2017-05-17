@@ -77,7 +77,8 @@ void Error_Handler(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-
+uint8_t rcvData[1];
+HAL_StatusTypeDef status=HAL_BUSY;
 /* USER CODE END 0 */
 
 int main(void)
@@ -106,8 +107,10 @@ int main(void)
   MX_TIM7_Init();
 
   /* USER CODE BEGIN 2 */
+  status=HAL_I2C_Mem_Read(&hi2c1,0x68,0x3B,1,rcvData,1,1000);
+
   AccelerometerInit();
-  GSM_Init();
+  //GSM_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -201,9 +204,9 @@ void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler */
   /* User can add his own implementation to report the HAL error return state */
-  while(1) 
+  /*while(1)
   {
-  }
+  }*/
   /* USER CODE END Error_Handler */ 
 }
 

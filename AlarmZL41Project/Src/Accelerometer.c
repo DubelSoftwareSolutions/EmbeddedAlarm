@@ -42,14 +42,14 @@ uint8_t g_MPU6050_InterruptEnableSettings[1] = { 0b01000000 };
 
 uint8_t g_MPU6050_MotionInterruptThreshold[1] = { ACC_MOTION_THRESHOLD_mg / ACC_MOTION_THRESHOLD_RESOLUTION_mg };
 
-g_MPU6050_MotionInterruptDuration[1] = { ACC_MOTION_DURATION_ms / ACC_MOTION_DURATION_RESOLUTION_ms };
+uint8_t g_MPU6050_MotionInterruptDuration[1] = { ACC_MOTION_DURATION_ms / ACC_MOTION_DURATION_RESOLUTION_ms };
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
 	if(GPIO_Pin == Accelerometer_Interrupt_Pin)
 	{
-		g_MotionFlag = !g_MotionFlag;
-		GSM_StartGettingPosition();
+		g_MotionFlag = !g_MotionFlag;//popraw
+		//GPS_StartGettingPosition();
 		GSM_StartSendingPosition();
 	}
 }

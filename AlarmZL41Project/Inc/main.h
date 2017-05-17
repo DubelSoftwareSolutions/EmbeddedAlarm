@@ -65,9 +65,9 @@
 #define CommunicationUART_TX_GPIO_Port GPIOC
 #define CommunicationUART_RX_Pin GPIO_PIN_11
 #define CommunicationUART_RX_GPIO_Port GPIOC
-#define Accelerometer_SCL_Pin GPIO_PIN_6
+#define Accelerometer_SCL_Pin GPIO_PIN_8
 #define Accelerometer_SCL_GPIO_Port GPIOB
-#define Accelerometer_SDA_Pin GPIO_PIN_7
+#define Accelerometer_SDA_Pin GPIO_PIN_9
 #define Accelerometer_SDA_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
