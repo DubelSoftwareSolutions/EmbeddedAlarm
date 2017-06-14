@@ -7,5 +7,13 @@
 *.gz
 *.xlsx
 *.o
-
+./alarm/.settings/*
+./alarm/Debug/*
+./alarm/Drivers/*
+./alarm/startup/*
+./alarm/*.cproject
+./alarm/*.mxroject
+./alarm/*.project
+./alarm/*.ld
+./alarm/*.launch
 ./.metadata/.plugins/org.eclipse*

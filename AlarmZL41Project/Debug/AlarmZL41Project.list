@@ -20859,7 +20859,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
  8007c68:	2b80      	cmp	r3, #128	; 0x80
  8007c6a:	d10b      	bne.n	8007c84 <HAL_GPIO_EXTI_Callback+0x28>
 	{
-		g_MotionFlag = !g_MotionFlag;
+		g_MotionFlag = !g_MotionFlag;//popraw
  8007c6c:	4b07      	ldr	r3, [pc, #28]	; (8007c8c <HAL_GPIO_EXTI_Callback+0x30>)
  8007c6e:	781b      	ldrb	r3, [r3, #0]
  8007c70:	2b00      	cmp	r3, #0
